@@ -39,7 +39,7 @@ class FoodFactory(AbsFactory):
         raise InvalidObjArg("You must provide a valid object name for the factory!")
 
 def main() -> None:
-  apple = FoodFactory.create("apple") # Might seem kinda unnecessary to use abstract base class if I don't instansiate it but whatever
+  apple = FoodFactory.create("apple") # Might seem kinda unnecessary to use abstract base class if I don't instantiate it but whatever
   print(apple)
 
 if __name__ == "__main__": 
