@@ -16,7 +16,17 @@ class Couch:
 
 class AbsBuilder(ABC):
     @abstractmethod
+    def __init__(self) -> None: ...
+
+    @abstractmethod
     def build(self) -> Any: ...
+
+class Director(ABC):
+    @abstractmethod
+    def __init__(self) -> None: ...
+
+    @abstractmethod
+    def direct(self) -> Any: ...
 
 class CouchBuilder(AbsBuilder):
     def __init__(self) -> None:
@@ -41,16 +51,24 @@ class CouchBuilder(AbsBuilder):
     def build(self) -> Couch:
         return self._couch
 
-class Client:
-    def __init__(self) -> None: ...
+class CouchDirector(Director):
+    def __init__(self, builder: CouchBuilder):
+        self._builder = builder
+
+    def direct(self) -> CouchBuilder:
+        self._builder.set_color("cyan")
+        self._builder.set_material("leather")
+        self._builder.set_size("big")
+        self._builder.set_weight("heavy")
+        return self._builder
     
+class Client:
+    def __init__(self) -> None:
+        self._builder = CouchBuilder()
+        self._director = CouchDirector(self._builder)
+
     def make_couch(self) -> Couch:
-        couch_builder = CouchBuilder()
-        couch_builder.set_color("cyan")
-        couch_builder.set_material("leather")
-        couch_builder.set_size("big")
-        couch_builder.set_weight("heavy")
-        return couch_builder.build()
+        return self._director.direct().build()
 
 def main() -> None:
     client = Client()
