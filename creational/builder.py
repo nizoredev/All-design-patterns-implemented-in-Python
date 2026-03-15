@@ -21,7 +21,7 @@ class AbsBuilder(ABC):
     @abstractmethod
     def build(self) -> Any: ...
 
-class Director(ABC):
+class AbsDirector(ABC):
     @abstractmethod
     def __init__(self) -> None: ...
 
@@ -51,7 +51,7 @@ class CouchBuilder(AbsBuilder):
     def build(self) -> Couch:
         return self._couch
 
-class CouchDirector(Director):
+class CouchDirector(AbsDirector):
     def __init__(self, builder: CouchBuilder):
         self._builder = builder
 
