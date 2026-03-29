@@ -101,7 +101,7 @@ class App:
 def main() -> None:
     app = App()
     app.create()
-    
+
     app.set_text("Text") # Set text to "Text"
     print(app.get_text()) # Output the editor text ("Text")
 
@@ -113,7 +113,3 @@ def main() -> None:
     
 if __name__ == "__main__":
     main()
-
-# ydoieiseie
-# itbm
-# wgi
